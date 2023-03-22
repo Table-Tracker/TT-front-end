@@ -1,0 +1,65 @@
+.d-flex {
+    display: flex;
+}
+
+.main-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.w-10 {
+    width: 10%;
+}
+
+.d-block {
+    display: block;
+}
+
+.m-bottom-5 {
+    margin-bottom: 5px;
+}
+
+.d-block {
+    display: block;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.gap {
+    gap: 5px;
+}
+
+.m-top-10 {
+    margin-top: 25px;
+}
+
+.d-none {
+    display: none;
+}
+
+.red {
+    color: red;
+}
+
+.avatar {
+    border-radius: 5px;
+    object-fit: cover;
+    height: 300px;
+    width: 300px;
+}
+
+.delete {
+    left: 0;
+    top: 0;
+}
+
+.paddingless-button {
+    padding: 0 !important;
+}
+
+.avatar-container {
+    height: 300px;
+    width: 300px;
+}

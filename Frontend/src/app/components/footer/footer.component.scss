@@ -1,0 +1,42 @@
+@import "src/styles.scss";
+
+.footer {
+    width: 100%;
+    height: 125px;
+    background: $header-footer-color;
+    color: white;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    // padding: 20px;
+}
+
+h1 {
+    //margin: 0px 15px !important;
+
+    font-family:'Inter';
+    font-size: 24px;
+}
+
+.gray {
+    color: gray;
+}
+
+.light-gray {
+    color: lightgray;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0px;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}

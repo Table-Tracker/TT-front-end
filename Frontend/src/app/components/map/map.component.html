@@ -1,0 +1,15 @@
+<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="20" (mapReady)="giveLatLong()" (mapClick)="close_window()">
+    <agm-marker [latitude]="object.latitude" [longitude]="object.longitude" [iconUrl]="$any(icon)" (markerClick)=select_marker(infoWindow)
+        *ngFor="let object of restaurantsForMap">
+        <agm-info-window #infoWindow
+            [latitude]="object.latitude" 
+            [longitude]="object.longitude">
+
+            <app-restaurant-map-card
+                [restaurant]="object.restaurant">
+            </app-restaurant-map-card>
+
+        </agm-info-window>
+
+    </agm-marker>
+</agm-map>

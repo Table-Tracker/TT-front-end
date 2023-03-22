@@ -1,0 +1,53 @@
+.restaurant-image {
+    height: 120px;
+    width: 120px;
+    border-radius: 7px;
+    margin: 0 20px 0 0;
+}
+
+.restaurant-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.restaurant-info {
+    display: flex;
+}
+
+.star-gray {
+    color: lightgray;
+}
+
+.euro-gray {
+    color: lightgray;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.image {
+    display: flex;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    width: 74%;
+}
+
+mat-card-content {
+    margin: 0 !important;
+}
+
+.ratings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 120px;
+}

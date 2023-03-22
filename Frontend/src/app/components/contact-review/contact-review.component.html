@@ -1,0 +1,139 @@
+<div class="componentPage">
+    <mat-button-toggle-group name="swapper" aria-label="Swapper" class="swapButton" value="Contacts" #group="matButtonToggleGroup" [value]="selectedVal" (change)="onValChange(group.value)">
+        <mat-button-toggle value="Contacts">Contacts</mat-button-toggle>
+        <mat-button-toggle value="Reviews" (click)="calculateRatingRatio()">Reviews</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div *ngIf="selectedVal === 'Contacts'; else reviews" class="contactsContainer">
+        <div class="mapContainer">
+            <app-map class="map" [address]="restaurant.address" [restaurants]="restaurantForMap"></app-map>
+        </div>
+
+        <div class="infoSuperContainer">
+            <div class="infoContainer">
+                <h4 class="header">Address: </h4>
+
+                <div>
+                    <p>{{ restaurant.address }}</p>
+                </div>
+            </div>
+
+            <div class="infoContainer">
+                <h4 class="header">Phone: </h4>
+
+                <div>
+                    <p>{{ restaurant.phone }}</p>
+                </div>
+            </div>
+
+            <div class="infoContainer">
+                <h4 class="header">Mail: </h4>
+
+                <div>
+                    <p>{{ restaurant.email }}</p>
+                </div>
+            </div>
+
+            <div class="infoContainer">
+                <a [href]="restaurant.website" target="_blank" class="header">Website</a>
+            </div>
+
+            <div class="infoContainer">
+                <h4 class="header">Schedule: </h4>
+                <div>
+                    <p>
+                        Monday-Thursday: 08:00 - 24:00
+                        <br/>
+                        Friday-Sunday: 08:00 - 02:00
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #reviews>
+        <div class="reviewsContainer">
+            <div class="ratingCont">
+                <div style="padding-top:3px; margin-right: 10px;">Overall rating: </div>
+                <div class="stars">
+                    <div class="flex">
+                        <mat-icon [ngClass]="overall >= 1 ? '' : 'star-gray'">star_border</mat-icon>
+                        <mat-icon [ngClass]="overall >= 2 ? '' : 'star-gray'">star_border</mat-icon>
+                        <mat-icon [ngClass]="overall >= 3 ? '' : 'star-gray'">star_border</mat-icon>
+                        <mat-icon [ngClass]="overall >= 4 ? '' : 'star-gray'">star_border</mat-icon>
+                        <mat-icon [ngClass]="overall == 5 ? '' : 'star-gray'">star_border</mat-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="progressbarsCont">
+                <div class="progressbarCont">
+                    <div style="width:15%">1</div>
+                    <div class="w3-light-grey" style="height:18px;width:85%">
+                        <div class="w3-grey" style="height:18px" #one></div>
+                    </div><br>
+                </div>
+                <div class="progressbarCont">
+                    <div style="width:15%">2</div>
+                    <div class="w3-light-grey" style="height:18px;width:85%">
+                        <div class="w3-grey" style="height:18px" #two></div>
+                    </div><br>
+                </div>
+                <div class="progressbarCont">
+                    <div style="width:15%">3</div>
+                    <div class="w3-light-grey" style="height:18px;width:85%">
+                        <div class="w3-grey" style="height:18px" #three></div>
+                    </div><br>
+                </div>
+                <div class="progressbarCont">
+                    <div style="width:15%">4</div>
+                    <div class="w3-light-grey" style="height:18px;width:85%">
+                        <div class="w3-grey" style="height:18px" #four></div>
+                    </div><br>
+                </div>
+                <div class="progressbarCont">
+                    <div style="width:15%">5</div>
+                    <div class="w3-light-grey" style="height:18px;width:85%">
+                        <div class="w3-grey" style="height:18px" #five></div>
+                    </div><br>
+                </div>
+
+                <div class="stars"></div>
+            </div>
+            <p>Reviews:</p>
+            <div class="reviewsThemSelves" *ngFor="let review of mySentences | slice:0:show;">
+                <div class="review">
+                    <div class="visitorImage">
+                        <img [src]="review.visitorImg">
+                        <div>{{ review.visitorName }}</div>
+                    </div>
+
+                    <div class="reviewMainBody">
+                        <div style="width:50%; height: 15%;">
+                            <b>
+                                {{ review.header }}
+                            </b>
+                        </div>
+                        
+                        <div class="stars" style="width:50%; height: 15%;">
+                            <div class="flex">
+                                <mat-icon [ngClass]="review.rating >= 1 ? '' : 'star-gray'">star_border</mat-icon>
+                                <mat-icon [ngClass]="review.rating >= 2 ? '' : 'star-gray'">star_border</mat-icon>
+                                <mat-icon [ngClass]="review.rating >= 3 ? '' : 'star-gray'">star_border</mat-icon>
+                                <mat-icon [ngClass]="review.rating >= 4 ? '' : 'star-gray'">star_border</mat-icon>
+                                <mat-icon [ngClass]="review.rating == 5 ? '' : 'star-gray'">star_border</mat-icon>
+                            </div>
+                        </div>
+
+                        <div class="reviewtext">
+                            {{ review.review }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; margin-bottom: 2vh; width: 100%;" *ngIf="show < mySentences.length">
+                <button mat-raised-button color=primary id="myFormButtons" (click)="increaseShow()">Show more</button>
+            </div>
+        </div>
+    </ng-template>
+</div>

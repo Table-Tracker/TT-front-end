@@ -1,0 +1,48 @@
+@import "src/styles.scss";
+
+.container {
+    background-color: white;
+    padding: 0 0 10px 0;
+}
+
+.header {
+    width: 100%;
+    background-color: $header-footer-color;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+
+    &::ng-deep .mat-grid-tile-content {
+        display: block;
+    }
+}
+
+h3 {
+    margin: 0;
+}
+
+h4 {
+    font-weight: bold;
+    display: block !important;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.padding-10 {
+    padding: 10px;
+}
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+}

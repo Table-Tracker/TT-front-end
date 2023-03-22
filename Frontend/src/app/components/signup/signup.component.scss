@@ -1,0 +1,53 @@
+@import "src/styles.scss";
+
+.page {
+    background-color: $background-color;
+    width: 100% !important;
+}
+
+.wazzup {
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
+}
+
+.myIconsContainer {
+    display: flex; 
+    flex-flow: row wrap; 
+    justify-content: space-around; 
+    width: 28vw;
+    margin-bottom: 25px;
+}
+
+.nameSurnameContainer{
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 3px 2px 5px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
+  }
+
+#ForFont {
+  font-family: 'Inter';
+  margin: 0 0 0 0;
+}
+
+#myIconButtons {
+    width: 52px !important;
+    min-width: unset !important;
+    height: 52px; padding: 0px 0px 0px 0px;
+}
+
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
+#myFormButtons {
+    width: 30vw; 
+    font-family: Inter; 
+    font-size: larger;
+
+    height: 40px; 
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+}

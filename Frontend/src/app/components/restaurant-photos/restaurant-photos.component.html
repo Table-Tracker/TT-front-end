@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="upper-part">
+        <div class="restaurant-info">
+            <div class="main-info">
+                <h2>{{ restaurant.name }}</h2>
+
+                <div class="rating">
+                    <mat-icon [ngClass]="restaurant.rating >= 1 ? '' : 'star-gray'">star_border</mat-icon>
+                    <mat-icon [ngClass]="restaurant.rating >= 2 ? '' : 'star-gray'">star_border</mat-icon>
+                    <mat-icon [ngClass]="restaurant.rating >= 3 ? '' : 'star-gray'">star_border</mat-icon>
+                    <mat-icon [ngClass]="restaurant.rating >= 4 ? '' : 'star-gray'">star_border</mat-icon>
+                    <mat-icon [ngClass]="restaurant.rating >= 5 ? '' : 'star-gray'">star_border</mat-icon>
+                </div>
+            </div>
+
+            <div class="main-info">
+                <mat-chip-list>
+                    <mat-chip *ngFor="let tag of restaurant.tags">{{ tag }}</mat-chip>
+                </mat-chip-list>
+
+                <div class="rating">
+                    <mat-icon [ngClass]="restaurant.priceRating >= 1 ? '' : 'euro-gray'">euro</mat-icon>
+                    <mat-icon [ngClass]="restaurant.priceRating >= 2 ? '' : 'euro-gray'">euro</mat-icon>
+                    <mat-icon [ngClass]="restaurant.priceRating >= 3 ? '' : 'euro-gray'">euro</mat-icon>
+                </div>
+            </div>
+        </div>
+
+        <div class="button">
+            <button mat-flat-button color="secondary">Back</button>
+        </div>
+    </div>
+
+    <div class="images">
+
+    </div>
+</div>

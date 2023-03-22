@@ -1,0 +1,101 @@
+<div class="page">
+    <p style="font-size: 38px; font-family: Inter; text-align: center; margin-top: 5vh; margin-bottom: 5vh; ">Frequently asked questions</p>
+
+    <div class="faqcontaner">
+        <div class="questionsThemself">
+            <mat-expansion-panel (opened)="whoWeAreOpenState = true"
+            (closed)="whoWeAreOpenState = false" class="question">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        What is TableTracker?
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="questionText">Table Tracker is a restaurant reservation app that desined to help average people find a great place for a 
+                    business meeting, romantic dinner or just to find a place where you can hang out with your friends</div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="doesWeHaveAnOpenState = true"
+            (closed)="doesWeHaveAnOpenState = false" class="question">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Do we have an app?
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="questionText">TableTracker for now is only a web application, but we have an ambition to extend it on
+                    mobile devises for IOS and Android
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="freeOpenState = true"
+            (closed)="freeOpenState = false" class="question">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Is it free?
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="questionText">It is free to book a table, but if you choose to book dishes you will have to pay additional price
+                    which every restaurant sets. It could also take a small amount of money as verification, don't worry we will return 
+                    them to in a few minutes.
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="bookOpenState = true"
+            (closed)="bookOpenState = false" class="question">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Can i book many tables?
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="questionText">Yes you easily can. You can check all your reservation history in your profile page</div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="needOpenState = true"
+            (closed)="needOpenState = false" class="question">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Any service for restaurants?
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="questionText">Yes, TableTracker has a number of products available for restaurants in our international markets. <br> <br>
+
+                    We are passionate about equipping restaurateurs with industry-leading reservation and management tools
+                    that support them in driving more covers and running smooth service. 
+                    Restaurateurs can find more information at our for Restaurants page.
+                </div>
+            </mat-expansion-panel>
+        </div>
+    </div>
+
+    <p style="font-size: 38px; font-family: Inter; text-align: center; margin-top: 5vh; margin-bottom: 5vh; ">Have a question or want to register your restauraunt?</p>
+    <p style="font-size: 38px; font-family: Inter; text-align: center; margin-top: 5vh; margin-bottom: 5vh; ">Email us!</p>
+
+    <div class="formContainer">
+        <form [formGroup]="emailForm" (ngSubmit)="sendEmail(emailForm.value)">
+            <div class="container">
+                <div id="inputContainer" style="width:100%">
+                  <mat-form-field class="input-class" appearance="outline" style=" width: 35vw !important;">
+                    <input matInput placeholder="Enter your e-mail here" formControlName="email"/>
+                  </mat-form-field>
+                </div>
+            </div>
+
+            <div class="container">
+                <div id="inputContainer" style="width:100%">
+                  <mat-form-field class="input-class emailTextField" appearance="outline" style=" width: 35vw !important;">
+                    <textarea matInput
+                        cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="5"
+                        cdkAutosizeMaxRows="10"
+                        formControlName="question"
+                        placeholder="Enter your question here"></textarea>
+                  </mat-form-field>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; margin-bottom: 8vh;">
+                <button mat-raised-button color=primary id="myFormButtons" type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+</div>

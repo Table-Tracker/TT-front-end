@@ -1,0 +1,94 @@
+@import "src/styles.scss";
+
+.container {
+    background-color: $background-color;
+}
+
+.search {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35vw;
+
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.picture {
+    height: 60em;
+    background-image: url("../../../assets/bg-search.png");
+    background-size: cover;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+.discover {
+    margin: 45px 30px 30px 30px;
+}
+
+.filter-button {
+    margin-right: 5px;
+}
+
+.discover-more {
+    display: flex;
+    justify-content: center;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.learn-more {
+    background-image: url("../../../assets/learn-more.png");
+
+    background-size: cover;
+    margin: 30px 0 30px 0;
+
+    width: 750px;
+    height: 250px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    border-radius: 7px;
+
+    color: white;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+.restaurant-card {
+    margin: 20px 0px 20px 0px;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    padding: 0;
+}
+
+::ng-deep .mat-form-field-appearance-outline {
+    margin: 0.25em;
+}
+
+.restaurant-input {
+    width: 20vw;
+}
+
+.location-input {
+    width: 10vw;
+}

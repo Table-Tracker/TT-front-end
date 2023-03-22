@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="left">
+        <mat-card class="map">
+            <button mat-button class="map-button" (click)="toggleMap()">
+                <div class="image"></div>
+            </button>
+        </mat-card>
+
+        <mat-card>
+            <h2>Filters</h2>
+
+            <mat-divider class="divider-for-filters"></mat-divider>
+
+            <div>
+                <h4>Cuisines:</h4>
+
+                <div *ngFor="let cuisine of cuisines; index as i; ">
+                    <mat-checkbox (change)="cuisineFilterChange(cuisine.id)" [(ngModel)]="cuisinecheckedarray[i]">{{ cuisine.cuisine }}</mat-checkbox>
+                </div>
+            </div>
+
+            <div>
+                <h4>Types:</h4>
+
+                <div *ngFor="let type of types; index as i; ">
+                    <mat-checkbox (change)="typeFilterChange(type.number)" [(ngModel)]="typecheckedarray[i]">{{ type.name }}</mat-checkbox>
+                </div>
+            </div>
+
+            <div>
+                <h4>Price:</h4>
+
+                <ngx-slider [(value)]="priceLowValue" [(highValue)]="priceHighValue" [options]="priceOptions"></ngx-slider>
+            </div>
+
+            <div>
+                <h4>Review rating:</h4>
+
+                <ngx-slider [(value)]="ratingLowValue" [(highValue)]="ratingHighValue" [options]="ratingOptions"></ngx-slider>
+            </div>
+
+            <div class="filter-buttons">
+                <button mat-flat-button color="primary" class="reset-filters" (click)="resetFilters()">Reset filters</button>
+                <button mat-flat-button color="primary" (click)="applyFilters()">Apply filters</button>
+            </div>
+        </mat-card>
+    </div>
+
+    <div class="right">
+        <form [formGroup]="restaurantForm" (ngSubmit)="search(restaurantForm.value)">
+            <mat-form-field appearance="outline">
+                <input matInput type="text" formControlName="restaurant" placeholder="Cuisine or restaurant name" [value]="restaurantQuery">
+            </mat-form-field>
+
+            <button mat-button type="submit">
+                <mat-icon>search</mat-icon>
+            </button>
+        </form>
+
+        <mat-divider class="divider"></mat-divider>
+
+        <div class="discover">
+            <h3>Discover top results</h3>
+
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="buttonToggle" (change)="buttonToggleChanged()">
+                <mat-button-toggle [checked]="buttonToggle === 'Top'" value="Top" >Top</mat-button-toggle>
+                <mat-button-toggle [checked]="buttonToggle === 'New'" value="New">New</mat-button-toggle>
+                <mat-button-toggle [checked]="buttonToggle === 'Recommended'" value="Recommended">Recommended</mat-button-toggle>
+            </mat-button-toggle-group>
+    
+            <div *ngIf="showMap" class="map-container">
+                <app-map [address]="'Shevska St, 8, Lviv, Lviv Oblast, 79000'" [restaurants]="restaurants">
+
+                </app-map>
+            </div>
+
+            <div class="restaurant-card" *ngFor="let restaurant of shownRestaurants">
+                <app-restaurant-card
+                    [restaurant]="restaurant">
+                </app-restaurant-card>
+            </div>
+            
+            <div class="discover-more" *ngIf="shownRestaurants.length !== actualRestaurants.length">
+                <button mat-flat-button color="primary" (click)="showMore()">Show more</button>
+            </div>
+        </div>
+    </div>
+</div>

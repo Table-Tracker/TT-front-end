@@ -1,0 +1,76 @@
+<div class="main-info w-100">
+    <div class="d-flex">
+        <input type="file" #file (change)="uploadAvatar(file.files)" class="d-none">
+
+        <div class="avatar-container">
+            <button mat-button (click)="file.click()" class="paddingless-button">
+                <img class="avatar" [src]="imageSource">
+            </button>
+    
+            <button mat-button class="delete" (click)="deleteAvatar()" *ngIf="fileToUpload !== null || user.avatar !== null && user.avatar.id !== 0">
+                <mat-icon class="red">delete</mat-icon>
+            </button>
+
+            <button mat-button (click)="saveAvatar()" *ngIf="fileToUpload !== null || deletedAvatar || !savedAvatar" color="secondary">Save Image</button>
+        </div>
+
+        <mat-list>
+            <mat-list-item>
+                <h2>{{ user.fullName }}</h2>
+            </mat-list-item>
+
+            <mat-list-item>
+                <h3 matLine>E-mail address</h3>
+                <p matLine>{{ user.email }}</p>
+            </mat-list-item>
+            
+            <mat-list-item [ngClass]="isInEditMode ? 'm-top-10' : ''">
+                <h3 *ngIf="!isInEditMode" matLine>Date of birth</h3>
+
+                <p *ngIf="!isInEditMode" matLine>{{ getDateString() }}</p>
+
+                <mat-form-field appearance="outline" *ngIf="isInEditMode">
+                    <mat-label>Date</mat-label>
+                    <input matInput #dateInput [matDatepickerFilter]="myFilter"
+                        placeholder="Date not set" [matDatepicker]="picker"
+                        [(ngModel)]="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </mat-list-item>
+                
+            <mat-list-item [ngClass]="isInEditMode ? 'm-top-10' : ''">
+                <h3 *ngIf="!isInEditMode" matLine>Location</h3>
+
+                <p *ngIf="!isInEditMode" matLine>{{ getLocationString() }}</p>
+
+                <mat-form-field appearance="outline" *ngIf="isInEditMode">
+                    <mat-label>Location</mat-label>
+
+                    <input matInput #locationInput
+                        [value]="isNullOrEmpty(user.location) ? '' : user.location"
+                        placeholder="Location not set">
+                </mat-form-field>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+    <div class="w-10">
+        <button *ngIf="!isInEditMode" (click)="changeIsInEdit()" class="w-100 m-bottom-5" mat-flat-button color="primary">Edit Profile</button>
+
+        <div class="d-flex m-bottom-5 gap" *ngIf="isInEditMode">
+            <button class="w-100" mat-flat-button color="primary" (click)="changeIsInEdit()">Cancel</button>
+            <button class="w-100" mat-flat-button color="primary" (click)="save()">Save</button>
+        </div>
+
+        <button mat-flat-button
+           class="w-100"
+           color="primary"
+           (click)="openDialog()">
+            Reset Password
+        </button>
+
+        <p *ngIf="successBool">We sent you a confirmation email.</p>
+        <p *ngIf="errorBool" class="red">The server encountered an error!</p>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<header class="header">
+    <h1>
+        <a [routerLink]="['/home']" class="title">Table Tracker</a>
+    </h1>
+
+    <div class="align-end">
+        <div *ngIf="!isLoggedIn()">
+            <a mat-button [routerLink]="['/signup']">Sign up</a>
+    
+            <a mat-button [routerLink]="['/login']">Log in</a>
+        </div>
+
+        <div id="avatar"></div>
+
+        <div *ngIf="isLoggedIn()">
+            <button mat-button (click)="goToProfile()">{{ user!.fullName }}</button>
+
+            <button mat-button (click)="logout()">
+                <mat-icon aria-hidden="false">logout</mat-icon>
+            </button>
+        </div>
+    </div>
+</header>

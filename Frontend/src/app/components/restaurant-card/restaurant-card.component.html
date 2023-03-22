@@ -1,0 +1,40 @@
+<mat-card class="restaurant-card">
+    <div class="restaurant-info">
+        <div class="image">
+            <img [src]="image" class="restaurant-image"/>
+        </div>
+    
+        <div class="description">
+            <mat-card-title>{{ restaurant.name }}</mat-card-title>
+        
+            <mat-chip-list>
+                <mat-chip *ngFor="let cuisine of restaurant.cuisines">{{ cuisine.cuisine }}</mat-chip>
+            </mat-chip-list>
+        
+            <mat-card-content>{{ restaurant.description }}</mat-card-content>
+        </div>
+    </div>
+
+    <div class="ratings">
+        <div class="flex">
+            <mat-icon [ngClass]="restaurant.rating >= 1 ? '' : 'star-gray'">star_border</mat-icon>
+            <mat-icon [ngClass]="restaurant.rating >= 2 ? '' : 'star-gray'">star_border</mat-icon>
+            <mat-icon [ngClass]="restaurant.rating >= 3 ? '' : 'star-gray'">star_border</mat-icon>
+            <mat-icon [ngClass]="restaurant.rating >= 4 ? '' : 'star-gray'">star_border</mat-icon>
+            <mat-icon [ngClass]="restaurant.rating >= 5 ? '' : 'star-gray'">star_border</mat-icon>
+        </div>
+
+        <div class="flex">
+            <mat-icon [ngClass]="restaurant.priceRange >= 1 ? '' : 'euro-gray'">euro</mat-icon>
+            <mat-icon [ngClass]="restaurant.priceRange >= 2 ? '' : 'euro-gray'">euro</mat-icon>
+            <mat-icon [ngClass]="restaurant.priceRange >= 3 ? '' : 'euro-gray'">euro</mat-icon>
+        </div>
+
+        <div class="flex">
+            <a [routerLink]="['/restaurant-page', restaurant.id]"
+               mat-flat-button color="primary" (click)="discover()">
+                Discover
+            </a>
+        </div>
+    </div>
+</mat-card>

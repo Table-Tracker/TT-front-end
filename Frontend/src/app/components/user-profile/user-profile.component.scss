@@ -1,0 +1,69 @@
+@import "src/styles.scss";
+
+.container {
+    background-color: $background-color;
+    padding: 60px;
+}
+
+.booking-image {
+    height: 150px;
+    width: 150px;
+    border-radius: 7px;
+}
+
+.booking-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.star-gray {
+    color: lightgray;
+}
+
+.euro-gray {
+    color: lightgray;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.image {
+    display: flex;
+}
+
+.date {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    width: 74%;
+
+    margin-left: 20px;
+}
+
+.booking-info {
+    display: flex;
+}
+
+.ratings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 120px;
+}
+
+.m-top-30 {
+    margin-top: 30px;
+}
+
+.gray {
+    color: gray;
+}
+
+.restaurant-card {
+    margin: 20px 0px 20px 0px;
+}

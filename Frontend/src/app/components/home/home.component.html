@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="picture">
+        <form [formGroup]="myFormGroup" (ngSubmit)="search(myFormGroup.value)" class="search">        
+            <mat-form-field appearance="outline" class="restaurant-input">
+                <mat-label>Restaurant</mat-label>
+                <input matInput type="text" formControlName="restaurant">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="location-input">
+                <mat-label>Location</mat-label>
+
+                <mat-select formControlName="location">
+                    <mat-option value="Lviv">Lviv</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-button type="submit">
+                <mat-icon aria-hidden="false">search</mat-icon>
+            </button>
+        </form>
+    </div>
+
+    <div class="discover">
+        <h2>Discover new restaurants in your city</h2>
+
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="buttonToggle" (change)="buttonToggleChanged()">
+            <mat-button-toggle [checked]="buttonToggle === 'Top'" value="Top" >Top</mat-button-toggle>
+            <mat-button-toggle [checked]="buttonToggle === 'New'" value="New">New</mat-button-toggle>
+            <mat-button-toggle [checked]="buttonToggle === 'Recommended'" value="Recommended">Recommended</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <div class="restaurant-card" *ngFor="let restaurant of shownRestaurants">
+            <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
+        </div>
+
+        <div class="discover-more" *ngIf="shownRestaurants.length !== restaurants.length">
+            <button mat-flat-button color="primary" (click)="showMore()">Show more</button>
+        </div>
+    </div>    
+
+    <div class="flex">
+        <div class="learn-more">
+            <h3>Join our restaurants family</h3>
+    
+            <p>Learn more about us and join our family <br />with more then 15000 restaurants</p>
+    
+            <button mat-flat-button color="primary">Learn more</button>
+        </div>
+    </div>
+</div>

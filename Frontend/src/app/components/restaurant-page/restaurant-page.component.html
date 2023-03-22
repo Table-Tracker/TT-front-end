@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="flex" style="justify-content:center">
+        <div class="restaurant-info">
+            <div class="margin-10">
+                <div class="main-info">
+                    <h2>{{ restaurant.name }}</h2>
+    
+                    <div class="rating">
+                        <mat-icon [ngClass]="restaurant.rating >= 1 ? '' : 'star-gray'">star_border</mat-icon>
+                        <mat-icon [ngClass]="restaurant.rating >= 2 ? '' : 'star-gray'">star_border</mat-icon>
+                        <mat-icon [ngClass]="restaurant.rating >= 3 ? '' : 'star-gray'">star_border</mat-icon>
+                        <mat-icon [ngClass]="restaurant.rating >= 4 ? '' : 'star-gray'">star_border</mat-icon>
+                        <mat-icon [ngClass]="restaurant.rating >= 5 ? '' : 'star-gray'">star_border</mat-icon>
+                    </div>
+                </div>
+    
+                <div class="main-info">
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let cuisine of restaurant.cuisines">{{ cuisine.cuisine }}</mat-chip>
+                    </mat-chip-list>
+    
+                    <div class="rating">
+                        <mat-icon [ngClass]="restaurant.priceRange >= 1 ? '' : 'euro-gray'">euro</mat-icon>
+                        <mat-icon [ngClass]="restaurant.priceRange >= 2 ? '' : 'euro-gray'">euro</mat-icon>
+                        <mat-icon [ngClass]="restaurant.priceRange >= 3 ? '' : 'euro-gray'">euro</mat-icon>
+                    </div>
+                </div>
+            </div>
+
+            <div class="margin-10">
+                <div>
+                    <img class="image" [src]="image">
+                </div>
+    
+                <div>
+                    <p>{{ restaurant.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="margin-10 width-20">
+            <div class="edit-restaurant" *ngIf="isManagedRestaurant">
+                <button mat-flat-button color="secondary">
+                    Edit restaurant page
+                    <span class="icon">
+                        <mat-icon>edit</mat-icon>
+                    </span>
+                </button>
+            </div>
+
+            <mat-card class="flex people-card card">
+                <h4 class="people-head">People:</h4>
+
+                <button mat-mini-fab color="secondary" class="people-button">
+                    <mat-icon class="icon" (click)="decreasePeople()">remove</mat-icon>
+                </button>
+
+                <span class="people-number">{{ peopleNumber }}</span>
+
+                <button mat-mini-fab color="secondary" class="people-button" (click)="increasePeople()">
+                    <mat-icon class="icon">add</mat-icon>
+                </button>
+            </mat-card>
+
+            <mat-card class="card">
+                <h4 class="d-inline">Date: </h4>
+                <span>{{ selectedDate.toDateString() }}</span>
+                <mat-divider></mat-divider>
+
+                <mat-calendar [selected]="selectedDate" (selectedChange)="datepickChange($event)" [minDate]="minDate"></mat-calendar>
+            </mat-card>
+
+            <mat-card class="timeCont" >
+                <div style="display: flex; justify-content: space-between;  margin-right:2px; width: 30%;" *ngFor="let reservationTime of availableReservations; let i=index" class="myFormButtons">
+                    <button mat-raised-button color=secondary [id]="i" (click)="selectedButton(i, reservationTime.resdate)">{{reservationTime.resdate.getHours()}}:{{reservationTime.resdate.getMinutes() | timeFormat}}</button>
+                  </div>
+            </mat-card>
+
+            <div class="buttons" *ngIf="visitor.id !== 0">
+                <button mat-flat-button color="secondary" (click)="changeHeart()">
+                    <mat-icon *ngIf="isChecked == 0">favorite_border</mat-icon>
+                    <mat-icon *ngIf="isChecked == 1" svgIcon="filledHeartIcon"></mat-icon>
+                </button>
+
+                <button mat-flat-button color="primary" class="right" (click)="bookATable()">Book</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menuContactReview">
+        <div class="menu">
+            <app-menu [restaurant]="restaurant"></app-menu>
+        </div>
+    
+        <div class="contact-review">
+            <app-contact-review [restaurant]="restaurant"></app-contact-review>
+        </div>
+    </div>
+</div>

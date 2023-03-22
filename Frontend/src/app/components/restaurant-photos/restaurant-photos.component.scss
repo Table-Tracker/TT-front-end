@@ -1,0 +1,23 @@
+@import "src/styles.scss";
+
+.container {
+    background-color: $background-color;
+}
+
+.restaurant-info {
+    margin: 10px;
+    flex: 0 0 60%;
+}
+
+.main-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+
+}
+
+.upper-part {
+    display: flex;
+}
