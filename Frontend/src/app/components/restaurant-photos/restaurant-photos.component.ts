@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantInfo } from 'src/app/models/restaurant-info.model';
+//import { RestaurantInfo } from 'src/app/models/restaurant-info.model';
+
+export interface RestaurantInfo {
+    id: number,
+    name: string,
+    tags: string[],
+    priceRating: number,
+    rating: number,
+    image: string,
+    description: string
+}
 
 @Component({
   selector: 'app-restaurant-photos',
