@@ -2,16 +2,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ForgotPasswordComponent } from './forgot-password.component';
 
-import { HttpResponse, HttpErrorResponse} from '@angular/common/http';
+
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import {Observable, of, throwError } from 'rxjs';
+import { HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+
+//import { MockAuthenticationService } from '../../mocks/mocks.module'
 
 class MockAuthenticationService {
   public sendResetEmail(email: string) : Observable<any> {
     return of(new HttpResponse( { status: 200, statusText: 'OK' }));
   }
 }
-
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;

@@ -13,7 +13,7 @@ import {
 } from '@angular/forms';
 
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserForAuthenticationDTO } from 'src/app/models/dtos/user-for-authentication.dto';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthResponseDTO } from 'src/app/models/dtos/auth-response.dto';
@@ -31,8 +31,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router,
-    private route: ActivatedRoute) { }
+    private router: Router) { }
 
   ngOnInit(): void {
   }
