@@ -38,8 +38,7 @@ describe('UserInfoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserInfoComponent);
     component = fixture.componentInstance;
-    const cmp = fixture.debugElement.componentInstance;
-    cmp.userId = 1;
+    component.userId = 1;
     fixture.detectChanges();
   });
 

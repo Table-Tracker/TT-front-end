@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NotificationService } from 'src/app/services/notification.service';
 import { FaqComponent } from './faq.component';
+import {TextFieldModule} from '@angular/cdk/text-field';
+class MockNotificationService{
+
+}
 
 describe('FaqComponent', () => {
   let component: FaqComponent;
@@ -8,7 +12,11 @@ describe('FaqComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FaqComponent ]
+      declarations: [ FaqComponent],
+      providers:[
+        {provide: NotificationService, useClass: MockNotificationService},
+      ],
+      imports:[ TextFieldModule ]
     })
     .compileComponents();
   });
