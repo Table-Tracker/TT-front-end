@@ -9,7 +9,7 @@ export interface RestaurantDTO {
     description: string,
     rating: number,
     priceRange: number,
-    numberOfTables: number
+    numberOfTables: number,
     type: RestaurantType,
     discount: Discount,
     mainImage: ImageDTO,

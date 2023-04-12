@@ -45,17 +45,7 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getVisitor(this.userId)
       .subscribe((data: VisitorDTO) => {
-        this.user = data;
-        this.user.dateOfBirth = new Date(this.user.dateOfBirth);
-        this.date = this.user.dateOfBirth === undefined || this.user.dateOfBirth === null || this.user.dateOfBirth.getDate() === new Date('0001-01-01').getDate() ? null : this.user.dateOfBirth;
-
-        if (this.fileToUpload !== null) {
-          this.putImageIntoSource();
-        } else if (this.user.avatar === undefined || this.user.avatar === null || this.user.avatar.id === 0) {
-          this.imageSource = "../../../assets/user-placeholder.jpg"
-        } else {
-          this.imageSource = `https://localhost:5001/images/${this.user.avatar.name}`;
-        }  
+         
       });
   }
 

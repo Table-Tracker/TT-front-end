@@ -37,19 +37,7 @@ export class UserProfileComponent implements OnInit {
     const idFromRoute = Number(routeParams.get('id'));
     this.userId = idFromRoute;
 
-    this.userService.getVisitor(idFromRoute)
-      .subscribe((data: VisitorDTO) => {
-        this.user = data;
-
-        for (let i = 0; i < this.user.reservations.length; i++) {
-          this.user.reservations[i].date = new Date(this.user.reservations[i].date)
-        }
-
-        this.user.reservations = this.user.reservations.sort(this.compare);
-
-        this.shownFavourites = this.user.favourites.slice(0, 3);
-        this.shownReservations = this.user.reservations.filter(x => x.date >= new Date()).slice(0, 3);
-      });
+    
   }
 
   getImageSource(image: string) {
