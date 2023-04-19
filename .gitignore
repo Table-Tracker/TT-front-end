@@ -56,21 +56,21 @@ typings/
 .serverless/
 
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+dist
+tmp
+out-tsc
+bazel-out
 
 # Visual Studio Code
 .vscode/*
 .history/*
 
 # Miscellaneous
-/.angular/cache
+.angular/cache
 .sass-cache/
-/connect.lock
-/libpeerconnection.log
-/typings
+connect.lock
+libpeerconnection.log
+typings
 
 # System files
 .DS_Store
