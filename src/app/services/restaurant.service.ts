@@ -15,7 +15,7 @@ export class RestaurantService {
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'authorization': `Bearer ${localStorage['token']}`,
+      'authorization': `Bearer ${localStorage.token}`,
     });
   }
 
@@ -24,6 +24,6 @@ export class RestaurantService {
   }
 
   getAllRestaurants() {
-    return this.http.get<RestaurantDTO[]>("https://localhost:5001/api/restaurants", { headers: this.headers });
+    return this.http.get<RestaurantDTO[]>('https://localhost:5001/api/restaurants', { headers: this.headers });
   }
 }

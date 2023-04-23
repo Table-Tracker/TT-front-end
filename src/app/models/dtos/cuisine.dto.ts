@@ -1,4 +1,4 @@
 export interface CuisineDTO {
-    id: number,
-    cuisine: string,
+    id: number;
+    cuisine: string;
 }

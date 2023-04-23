@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./new-password.component.scss']
 })
 export class NewPasswordComponent implements OnInit {
-  
+
   showSuccess!: boolean;
   showError!: boolean;
   errorMessage!: string;
@@ -20,25 +20,25 @@ export class NewPasswordComponent implements OnInit {
 
   hide = true;
 
-  hideConfirm = true; 
+  hideConfirm = true;
 
   resetPasswordForm: FormGroup = new FormGroup( {
     password: new FormControl('', Validators.required),
     confirmPassword: new FormControl('', Validators.required)
   });
-  
+
   constructor(private authService: AuthenticationService,
     private route: ActivatedRoute) { }
-  
-  ngOnInit(): void {    
+
+  ngOnInit(): void {
     this.resetPasswordForm.get('confirmPassword')!.setValidators([Validators.required]);
-    
-    this.token = this.route.snapshot.queryParams['token'];
-    this.email = this.route.snapshot.queryParams['email'];
+
+    this.token = this.route.snapshot.queryParams.token;
+    this.email = this.route.snapshot.queryParams.email;
   }
 
   public hasError = (controlName: string, errorName: string) => {
-    return this.resetPasswordForm.get(controlName)!.hasError(errorName)
+    return this.resetPasswordForm.get(controlName)!.hasError(errorName);
   }
   public resetPassword = (resetPasswordFormValue) => {
     this.showError = this.showSuccess = false;
@@ -49,7 +49,7 @@ export class NewPasswordComponent implements OnInit {
       confirmPassword: resetPass.confirmPassword,
       token: this.token,
       email: this.email
-    }
+    };
 
     this.authService.resetPassword(resetPassDto)
     .subscribe({
@@ -58,6 +58,6 @@ export class NewPasswordComponent implements OnInit {
         this.showError = true;
         this.errorMessage = err.message;
       }
-    })
+    });
   }
 }

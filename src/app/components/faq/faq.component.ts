@@ -42,7 +42,7 @@ export class FaqComponent implements OnInit {
       cc: [],
       subject: '',
       body: '',
-    }).subscribe(_response => console.log("Your question has been added and will be answered ASAP"));
+    }).subscribe(_response => console.log('Your question has been added and will be answered ASAP'));
   }
-  
+
 }

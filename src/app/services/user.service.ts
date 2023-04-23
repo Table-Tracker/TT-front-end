@@ -15,7 +15,7 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'authorization': `Bearer ${localStorage['token']}`,
+      'authorization': `Bearer ${localStorage.token}`,
     });
   }
 
@@ -32,11 +32,11 @@ export class UserService {
   }
 
   uploadAvatar(id: number, formData: FormData) {
-    let headers = new HttpHeaders({
-      'authorization': `Bearer ${localStorage['token']}`,
+    const headers = new HttpHeaders({
+      'authorization': `Bearer ${localStorage.token}`,
     });
 
-    return this.http.post<ImageDTO>(`https://localhost:5001/api/visitors/${id}/avatar`, formData, { headers: headers });
+    return this.http.post<ImageDTO>(`https://localhost:5001/api/visitors/${id}/avatar`, formData, { headers });
   }
 
   deleteAvatar(id: number) {
@@ -50,8 +50,8 @@ export class UserService {
       },
       headers: this.headers
     }
-    )
-    
+    );
+
   }
 
   deleteFavourite(visitorId: number, restaurantId: number) {
@@ -60,6 +60,6 @@ export class UserService {
         restaurantId: restaurantId.toString()
       },
       headers: this.headers
-    })    
+    });
   }
 }

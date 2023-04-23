@@ -44,6 +44,7 @@
     "karma-coverage": "^2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.4",
+    "tslint": "~6.1.2",
     "typescript": "^3.9.10",
     "zone.js": "^0.10.3"
   }

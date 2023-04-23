@@ -11,7 +11,7 @@ import { RestaurantService } from 'src/app/services/restaurant.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  
+
   public myFormGroup!: FormGroup;
   public buttonToggle: string = 'Top';
 
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     this.myFormGroup = new FormGroup({
       restaurant: new FormControl(''),
       location: new FormControl(''),
-    })
+    });
 
     this.restaurantService.getAllRestaurants()
       .subscribe((data: RestaurantDTO[]) => {
@@ -37,14 +37,14 @@ export class HomeComponent implements OnInit {
 
   search(myFormGroupValue) {
     const values = {... myFormGroupValue };
-    let params: Params = new HttpParams();
-    params['encoder'] = null;
-    if (!(!values.restaurant || values.restaurant == undefined || values.restaurant == "" || values.restaurant.length == 0)) {
-      params['restaurant'] = values.restaurant
+    const params: Params = new HttpParams();
+    params.encoder = null;
+    if (!(!values.restaurant || values.restaurant === undefined || values.restaurant === '' || values.restaurant.length === 0)) {
+      params.restaurant = values.restaurant;
     }
 
-    if (!(!values.location || values.location == undefined || values.location == "" || values.location.length == 0)) {
-      params['location'] = values.location
+    if (!(!values.location || values.location === undefined || values.location === '' || values.location.length === 0)) {
+      params.location = values.location;
     }
 
     this.router.navigate(['/search'], { queryParams: params });
@@ -64,20 +64,21 @@ export class HomeComponent implements OnInit {
   }
 
   shuffle(array: RestaurantDTO[]) {
-    let currentIndex = array.length, randomIndex: number;
-  
+    let currentIndex = array.length;
+    let randomIndex: number;
+
     // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-  
+    while (currentIndex !== 0) {
+
       // Pick a remaining element.
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-  
+
       // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex], array[currentIndex]];
     }
-  
+
     return array;
   }
 

@@ -28,16 +28,16 @@ export class SearchComponent implements OnInit {
   public buttonToggle: string = 'Top';
 
   public types: {name: string, number: number}[] = [
-    {name: "Restaurant", number: 0 },
-    {name: "Fast Food", number: 1 },
-    {name: "Cafe", number: 2 }
-  ]
+    {name: 'Restaurant', number: 0 },
+    {name: 'Fast Food', number: 1 },
+    {name: 'Cafe', number: 2 }
+  ];
 
   cuisinecheckedarray: boolean[];
   typecheckedarray: boolean[];
 
   priceLowValue: number = 1;
-  priceHighValue: number = 3;  
+  priceHighValue: number = 3;
   priceOptions: Options = {
     floor: 1,
     ceil: 3,
@@ -46,7 +46,7 @@ export class SearchComponent implements OnInit {
   };
 
   ratingLowValue: number = 1;
-  ratingHighValue: number = 5;  
+  ratingHighValue: number = 5;
   ratingOptions: Options = {
     floor: 1,
     ceil: 5,
@@ -71,17 +71,17 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.restaurantForm = new FormGroup({
       restaurant: new FormControl(''),
-    })
+    });
 
     this.restaurantService.getAllRestaurants()
       .subscribe((data: RestaurantDTO[]) => {
         this.restaurants = data;
 
         this.route.queryParams.subscribe(params => {
-          this.restaurantQuery = params['restaurant'] === undefined ? '' : params['restaurant'];
-          this.locationQuery = params['location'] === undefined ? '' : params['location'];
+          this.restaurantQuery = params.restaurant === undefined ? '' : params.restaurant;
+          this.locationQuery = params.location === undefined ? '' : params.location;
           this.applyFilters();
-        })
+        });
       });
 
     this.cuisineService.getAllCuisines()
@@ -105,7 +105,7 @@ export class SearchComponent implements OnInit {
           .filter(y => x.cuisines
             .some(z => z.id === y.id)).length > 0);
     }
-    
+
     if (this.checkedTypes.length > 0) {
       this.actualRestaurants = this.actualRestaurants
         .filter(x => this.checkedTypes
@@ -147,11 +147,11 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  typeFilterChange(number: number) {
-    if (this.checkedTypes.some(x => x.number === number)) {
-      this.checkedTypes = this.checkedTypes.filter(x => x.number !== number);
+  typeFilterChange(tablesCount: number) {
+    if (this.checkedTypes.some(x => x.number === tablesCount)) {
+      this.checkedTypes = this.checkedTypes.filter(x => x.number !== tablesCount);
     } else {
-      this.checkedTypes.push(this.types.filter(x => x.number === number)[0]);
+      this.checkedTypes.push(this.types.filter(x => x.number === tablesCount)[0]);
     }
   }
 
@@ -169,19 +169,19 @@ export class SearchComponent implements OnInit {
 
   search(restaurantFormValue) {
     const values = {... restaurantFormValue };
-    let params: Params = new HttpParams();
-    params['encoder'] = null;
-    if (!(!values.restaurant || values.restaurant == undefined || values.restaurant == "" || values.restaurant.length == 0)) {
-      params['restaurant'] = values.restaurant
+    const params: Params = new HttpParams();
+    params.encoder = null;
+    if (!(!values.restaurant || values.restaurant === undefined || values.restaurant === '' || values.restaurant.length === 0)) {
+      params.restaurant = values.restaurant;
     }
 
-    if (!(!this.locationQuery || this.locationQuery == undefined || this.locationQuery == "" || this.locationQuery.length == 0)) {
-      params['location'] = this.locationQuery
+    if (!(!this.locationQuery || this.locationQuery === undefined || this.locationQuery === '' || this.locationQuery.length === 0)) {
+      params.location = this.locationQuery;
     }
 
     this.router.navigate(['/search'], { queryParams: params });
   }
-  
+
 
   compareStars(left: RestaurantDTO, right: RestaurantDTO): number {
     return right.rating - left.rating;
@@ -197,20 +197,21 @@ export class SearchComponent implements OnInit {
   }
 
   shuffle(array: RestaurantDTO[]) {
-    let currentIndex = array.length, randomIndex: number;
-  
+    let currentIndex = array.length;
+    let randomIndex: number;
+
     // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-  
+    while (currentIndex !== 0) {
+
       // Pick a remaining element.
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-  
+
       // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex], array[currentIndex]];
     }
-  
+
     return array;
   }
 
