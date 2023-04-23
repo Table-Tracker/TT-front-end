@@ -1,6 +1,13 @@
 # Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
+## Setup
+* Install Node `v10.24.1`
+* Install `@angular/cli@10.0.0`
+```
+npm uninstall -g @angular/cli
+npm cache clean --force
+npm install -g @angular/cli@10.0.0
+```
 
 ## Development server
 
