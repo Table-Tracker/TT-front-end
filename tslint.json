@@ -1,0 +1,26 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+      "tslint:recommended"
+    ],
+    "rules": {
+        "prefer-for-of": false,
+        "ban-types": [true, ["Object", "Use {} instead."], ["String"]],
+      "no-empty": false,
+      "semicolon": [
+        true,
+        "always"
+      ],
+      "quotemark": [
+        true,
+        "single"
+      ],
+      "no-console": false
+    },
+    "linterOptions": {
+      "exclude": [
+        "node_modules/**"
+      ]
+    }
+  }
+  

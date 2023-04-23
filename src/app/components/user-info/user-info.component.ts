@@ -45,27 +45,27 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getVisitor(this.userId)
       .subscribe((data: VisitorDTO) => {
-         
+
       });
   }
 
   isNullOrEmpty(value: string | undefined): boolean {
-    return !value || value === undefined || value === "" || value.length === 0;
+    return !value || value === undefined || value === '' || value.length === 0;
   }
 
   getDateString(): string {
     if (this.user.dateOfBirth.getDate() === new Date('0001-01-01').getDate()) {
-      return "Date not set";
+      return 'Date not set';
     }
-    
+
     return this.user.dateOfBirth.toDateString();
   }
 
   getLocationString(): string {
     if (this.user.location === undefined || this.user.location === null) {
-      return "Location not set";
+      return 'Location not set';
     }
-    
+
     return this.user.location;
   }
 
@@ -87,14 +87,14 @@ export class UserInfoComponent implements OnInit {
   myFilter = (d: Date | null): boolean => {
     const year = (d || new Date()).getFullYear();
     return year >= new Date().getFullYear() - 100;
-  };
+  }
 
   uploadAvatar(files) {
     if (files.length === 0) {
       return;
     }
 
-    this.fileToUpload = <File>files[0];
+    this.fileToUpload = (files[0] as File);
     this.file.nativeElement.value = null;
     this.deletedAvatar = false;
     this.savedAvatar = false;
@@ -104,17 +104,17 @@ export class UserInfoComponent implements OnInit {
   deleteAvatar() {
     this.deletedAvatar = true;
     this.fileToUpload = null;
-    this.imageSource = "../../../assets/user-placeholder.jpg"
+    this.imageSource = '../../../assets/user-placeholder.jpg';
     this.savedAvatar = false;
   }
 
   putImageIntoSource() {
     if (FileReader) {
-      var fr = new FileReader();
+      const fr = new FileReader();
 
       fr.onload = () => {
         this.imageSource = fr.result as string;
-      }
+      };
 
       fr.readAsDataURL(this.fileToUpload!);
     }

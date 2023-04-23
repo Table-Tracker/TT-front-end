@@ -12,7 +12,7 @@ export class CuisineService {
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'authorization': `Bearer ${localStorage['token']}`,
+      'authorization': `Bearer ${localStorage.token}`,
     });
   }
 

@@ -9,7 +9,7 @@ export class InitialsPipe implements PipeTransform {
             return '';
         }
 
-        let splitName = name!.trim().split(' ');
+        const splitName = name!.trim().split(' ');
         return splitName[0][0] + splitName[splitName.length - 1][0];
     }
 }

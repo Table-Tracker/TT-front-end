@@ -102,7 +102,15 @@
             ],
             "scripts": ["node_modules/zone.js/dist/zone-testing.js"]
           }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "tsconfig.app.json",
+            "tslintConfig": "tslint.json"
+          }
         }
+        
       }
     }
   },

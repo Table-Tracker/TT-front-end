@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     favourites: [],
     generalTrustFactor: 0,
     location: ''
-  }
+  };
 
   constructor(
     private router: Router,
@@ -29,14 +29,14 @@ export class HeaderComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit(): void {
-    if (localStorage['userId'] !== undefined && localStorage['userId'] !== null) {
-      this.userService.getVisitor(parseInt(localStorage['userId'], 10)).subscribe(user => this.user = user);
+    if (localStorage.userId !== undefined && localStorage.userId !== null) {
+      this.userService.getVisitor(parseInt(localStorage.userId, 10)).subscribe(user => this.user = user);
     }
   }
 
   logout() {
     this.authService.logout();
-       
+
     this.router.navigate(['/home']).then(() => location.reload());
   }
 
@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isLoggedIn(): boolean {
-    return localStorage['userId'] !== undefined && localStorage['userId'] !== null
+    return localStorage.userId !== undefined && localStorage.userId !== null;
   }
 
 }

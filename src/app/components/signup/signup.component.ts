@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
 
   hide = true;
 
-  hideConfirm = true; 
+  hideConfirm = true;
 
   signinformgroup: FormGroup = new FormGroup( {
     name: new FormControl('', Validators.required),
@@ -47,19 +47,19 @@ export class SignupComponent implements OnInit {
       lastName: signup.surname,
       email: signup.email,
       password: signup.password
-    }
+    };
 
     this.authService.signUpUser(userForAuth)
       .subscribe(() => {
         this.authService.loginUser(userForAuth)
           .subscribe({
             next: (response: AuthResponseDTO) => {
-              localStorage.setItem("token", response.token);
+              localStorage.setItem('token', response.token);
               localStorage.setItem('userId', `${response.user.id}`);
-              
+
               this.router.navigate(['/home']).then(() => location.reload());
             }
-          })
-      })
+          });
+      });
   }
 }

@@ -67,27 +67,27 @@ export class RestaurantPageComponent implements OnInit {
     this.minPeopleNumber = 1;
     this.isChecked = 0;
     this.minDate = new Date();
-    if(localStorage["selected"] !== undefined) {
-      this.selectedDate = new Date(localStorage["selected"]);
+    if(localStorage.selected !== undefined) {
+      this.selectedDate = new Date(localStorage.selected);
     } else {
       this.selectedDate = this.minDate;
     }
-    
+
   }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     const idFromRoute = Number(routeParams.get('id'));
     let elem = Array<ReservationDTO>();
-    if(localStorage["userId"] !== undefined && localStorage["userId"] !== null)
+    if(localStorage.userId !== undefined && localStorage.userId !== null)
     {
-      this.userService.getVisitor(localStorage["userId"])
+      this.userService.getVisitor(localStorage.userId)
       .subscribe((data: VisitorDTO) => {
         this.visitor = data;
 
         this.isChecked = this.visitor.favourites.some(x => x.id === idFromRoute) ? 1 : 0;
 
-      })
+      });
     }
     this.currentSelected = null;
     this.previousSelected = null;
@@ -95,26 +95,26 @@ export class RestaurantPageComponent implements OnInit {
     this.chosenDate = null;
 
     this.restaurantService.getRestaurant(idFromRoute)
-      .subscribe((data: RestaurantDTO) => {
-        this.restaurant = data;
+      .subscribe((restaurantData: RestaurantDTO) => {
+        this.restaurant = restaurantData;
         this.image = `https://localhost:5001/images/${this.restaurant.mainImage.name}`;
 
         this.reservationService.getRestaurantTables(this.restaurant.id)
-      .subscribe((dataTable: Array<TableDTO>) => {
-        
+      .subscribe((dataTable: TableDTO[]) => {
+
         this.tables = dataTable;
 
-        let boolShit: Array<Boolean> = [];
+        const boolShit: Boolean[] = [];
 
-        for(let elem of this.tables) {
+        for(const _ of this.tables) {
           boolShit.push(false);
         }
 
         for(let i = 0; i < this.tables.length; i++) {
           this.reservationService.getReservationsForTable(this.tables[i].id, this.selectedDate)
           .subscribe({next:(data: ReservationDTO[]) => {
-            elem = data
-            
+            elem = data;
+
             if(this.reservations === undefined)
             {
               this.reservations = elem;
@@ -132,13 +132,13 @@ export class RestaurantPageComponent implements OnInit {
             }
           }, error: (x:HttpErrorResponse)=> {
             boolShit[i] = true;
-            if(boolShit.every(x => x === true))
+            if(boolShit.every(value => value === true))
             {
               this.generateReservationTime(this.selectedDate, this.tables, this.reservations);
             }
-          
-          }})
-            
+
+          }});
+
         }
       });
 
@@ -156,13 +156,13 @@ export class RestaurantPageComponent implements OnInit {
       this.peopleNumber -= 1;
     }
   }
-  
+
   changeHeart() {
     if(this.isChecked === 0){
       this.userService.addFavourite(this.visitor.id, this.restaurant.id)
       .subscribe(() => {
         this.isChecked = 1;
-      })
+      });
 
 
     } else {
@@ -170,26 +170,26 @@ export class RestaurantPageComponent implements OnInit {
       this.userService.deleteFavourite(this.visitor.id, this.restaurant.id)
       .subscribe(() => {
         this.isChecked = 0;
-      })
+      });
     }
   }
 
-  generateReservationTime(date: Date, tables: Array<TableDTO>, reservations: Array<ReservationDTO>) {
+  generateReservationTime(date: Date, tables: TableDTO[], reservations: ReservationDTO[]) {
     let minresdate = new Date(date);
 
     this.availableReservations = [];
 
-    minresdate.setHours(9, 0, 0)
+    minresdate.setHours(9, 0, 0);
 
     while(minresdate.getHours() <= 22) {
 
-      let tempTables:Array<number>=[]
+      const tempTables:number[]=[];
 
-      for (let table of tables) {
+      for (const table of tables) {
         tempTables.push(table.id);
       }
 
-      let oneReservation: AvaliableReservation = {resdate: minresdate, availableTables: tempTables};
+      const oneReservation: AvaliableReservation = {resdate: minresdate, availableTables: tempTables};
 
       if(this.availableReservations === undefined)
         {
@@ -201,7 +201,7 @@ export class RestaurantPageComponent implements OnInit {
         minresdate = new Date(minresdate.getTime() + 60*60000);
     }
 
-    let toDelete:Array<number>=[];
+    let toDelete:number[]=[];
 
     for (let i = 0; i < this.availableReservations.length; i++) {
         if(this.availableReservations[i].resdate.getTime() - 30*60000 < date.getTime()) {
@@ -213,13 +213,13 @@ export class RestaurantPageComponent implements OnInit {
       delete this.availableReservations[toDelete[i]];
     }
 
-    this.availableReservations = this.availableReservations.filter(x => x !== undefined)
+    this.availableReservations = this.availableReservations.filter(x => x !== undefined);
 
     toDelete = [];
 
-    for(let res of reservations){
+    for(const res of reservations){
       for(let i = 0; i < this.availableReservations.length; i++){
-        let dates = this.availableReservations[i];
+        const dates = this.availableReservations[i];
         res.date = new Date(res.date);
         if(dates.resdate.getTime() >= res.date.getTime() && dates.resdate.getTime() <= res.date.getTime() + 180*60000) {
           if(dates.availableTables != null)
@@ -238,7 +238,7 @@ export class RestaurantPageComponent implements OnInit {
       delete this.availableReservations[toDelete[i]];
     }
 
-    this.availableReservations = this.availableReservations.filter(x => x !== undefined)
+    this.availableReservations = this.availableReservations.filter(x => x !== undefined);
 
     // let minReserveDate = date
     // console.log("I am here")
@@ -261,31 +261,31 @@ export class RestaurantPageComponent implements OnInit {
     //     } else {
     //       this.availableReservations.push(oneReservation);
     //     }
-        
+
     //   }
     //   minReserveDate = new Date(minReserveDate.getTime() + 60*60000);
     // }
   }
-  
+
   selectedButton(index: number, value: any) {
     if(this.currentSelected != null) {
 
-      let prevButton: HTMLElement | null = document.getElementById(this.currentSelected.toString());
+      const prevButton: HTMLElement | null = document.getElementById(this.currentSelected.toString());
 
       if(prevButton) {
-        prevButton.style.backgroundColor = "white";
-        prevButton.style.color="black";
+        prevButton.style.backgroundColor = 'white';
+        prevButton.style.color='black';
       }
 
       this.currentSelected = index;
 
       this.chosenDate = value;
 
-      let currentButton: HTMLElement | null = document.getElementById(index.toString());
+      const currentButton: HTMLElement | null = document.getElementById(index.toString());
 
       if(currentButton) {
-        currentButton.style.backgroundColor = "black";
-        currentButton.style.color = "white";
+        currentButton.style.backgroundColor = 'black';
+        currentButton.style.color = 'white';
       }
 
     } else {
@@ -293,14 +293,14 @@ export class RestaurantPageComponent implements OnInit {
 
       this.chosenDate = value;
 
-      let currentButton: HTMLElement | null = document.getElementById(index.toString());
+      const currentButton: HTMLElement | null = document.getElementById(index.toString());
 
       if(currentButton) {
-        currentButton.style.backgroundColor = "black";
-        currentButton.style.color = "white";
+        currentButton.style.backgroundColor = 'black';
+        currentButton.style.color = 'white';
       }
     }
-    
+
   }
 
   datepickChange(event) {
@@ -315,9 +315,9 @@ export class RestaurantPageComponent implements OnInit {
 
     let elem = Array<ReservationDTO>();
 
-    let boolShit: Array<Boolean> = [];
+    const boolShit: Boolean[] = [];
 
-        for(let elem of this.tables) {
+        for(const _ of this.tables) {
           boolShit.push(false);
         }
 
@@ -326,7 +326,7 @@ export class RestaurantPageComponent implements OnInit {
         for(let i = 0; i < this.tables.length; i++) {
           this.reservationService.getReservationsForTable(this.tables[i].id, this.selectedDate)
           .subscribe({next:(data: ReservationDTO[]) => {
-            elem = data
+            elem = data;
 
             if(this.reservations === undefined)
             {
@@ -344,16 +344,16 @@ export class RestaurantPageComponent implements OnInit {
             {
               this.generateReservationTime(this.selectedDate, this.tables, this.reservations);
             }
-          }, error: (x:HttpErrorResponse)=> { 
+          }, error: (x:HttpErrorResponse)=> {
             boolShit[i] = true;
-            if(boolShit.every(x => x === true))
+            if(boolShit.every(value => value === true))
             {
               this.generateReservationTime(this.selectedDate, this.tables, this.reservations);
             }
           }
            }
-           
-          )
+
+          );
         }
 
   }
@@ -366,12 +366,12 @@ export class RestaurantPageComponent implements OnInit {
 
     let t: TableDTO;
 
-    let index = this.availableReservations.filter(x => x.resdate === this.chosenDate)[0].availableTables![0]
+    const index = this.availableReservations.filter(x => x.resdate === this.chosenDate)[0].availableTables![0];
 
     // t = this.tables[index];
     t = this.tables.filter(x => x.id === index)[0];
 
-    let pass: ReservationDTO = {
+    const pass: ReservationDTO = {
       id: 0,
       visitor: this.visitor,
       date: this.chosenDate!,
@@ -380,9 +380,9 @@ export class RestaurantPageComponent implements OnInit {
 
     this.reservationService.createReservation(pass)
     .subscribe(() => {
-      localStorage["selected"] = this.selectedDate;
+      localStorage.selected = this.selectedDate;
       location.reload();
-    })
+    });
 
   }
 
