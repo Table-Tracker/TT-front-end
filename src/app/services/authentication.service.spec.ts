@@ -197,6 +197,7 @@ describe('AuthenticationService', () => {
     describe('#isAuthenticated', () => {
     
         beforeEach(() => {
+          localStorage.clear();
         });
 
         it('should be not authenticated', () => {

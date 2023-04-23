@@ -46,7 +46,7 @@ export class UserService {
   addFavourite(visitorId: number, restaurantId: number) {
     return this.http.post<{commandResult: CommandResult; errorMessage: string}>(`https://localhost:5001/api/visitors/${visitorId}/favourites`, null, {
       params: {
-        restaurantId: restaurantId
+        restaurantId: restaurantId.toString()
       },
       headers: this.headers
     }
@@ -57,7 +57,7 @@ export class UserService {
   deleteFavourite(visitorId: number, restaurantId: number) {
     return this.http.delete<{commandResult: CommandResult; errorMessage: string}>(`https://localhost:5001/api/visitors/${visitorId}/favourites`, {
       params: {
-        restaurantId: restaurantId
+        restaurantId: restaurantId.toString()
       },
       headers: this.headers
     })    
