@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -21,7 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatExpansionModule } from '@angular/material/expansion'
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -55,9 +55,9 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { NewPasswordComponent } from './components/new-password/new-password.component';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 
-const JWT_Module_Options: JwtModuleOptions = {
+const JWT_MODULE_OPTIONS: JwtModuleOptions = {
   config: {
-      tokenGetter: x => localStorage['token'],
+      tokenGetter: x => localStorage.token,
   }
 };
 
@@ -95,7 +95,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     MatFormFieldModule,
     MatIconModule,
     BrowserAnimationsModule,
-    
+
     NgxSliderModule,
 
     ReactiveFormsModule,
@@ -121,13 +121,13 @@ const JWT_Module_Options: JwtModuleOptions = {
     MatDividerModule,
     MatListModule,
     TextFieldModule,
-    JwtModule.forRoot(JWT_Module_Options)
+    JwtModule.forRoot(JWT_MODULE_OPTIONS)
   ],
 
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
 
   constructor(iconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(

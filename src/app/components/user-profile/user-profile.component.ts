@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  
+
   public shownFavourites: RestaurantDTO[] = [];
   public shownReservations: ReservationDTO[] = [];
 
@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
     favourites: [],
     generalTrustFactor: 0,
     location: ''
-  }
+  };
   userId: number = 0;
 
   constructor(
@@ -37,7 +37,7 @@ export class UserProfileComponent implements OnInit {
     const idFromRoute = Number(routeParams.get('id'));
     this.userId = idFromRoute;
 
-    
+
   }
 
   getImageSource(image: string) {

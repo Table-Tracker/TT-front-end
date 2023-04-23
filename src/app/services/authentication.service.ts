@@ -16,7 +16,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'authorization': `Bearer ${localStorage['token']}`,
+      'authorization': `Bearer ${localStorage.token}`,
     });
   }
 
@@ -27,7 +27,7 @@ export class AuthenticationService {
   public sendResetEmail = (email: string) => {
     return this.http.post(
       'https://localhost:5001/api/accounts/reset-password/email',
-    { email: email, clientUri: 'http://localhost:4200/new-password' },
+    { email, clientUri: 'http://localhost:4200/new-password' },
     { headers: this.headers });
   }
 
@@ -40,8 +40,8 @@ export class AuthenticationService {
   }
 
   public logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
   }
 
   public isAuthenticated(): boolean {
@@ -50,7 +50,7 @@ export class AuthenticationService {
     if (token === null) {
       return false;
     }
-    
+
     return !this.jwtHelper.isTokenExpired(token!);
   }
 

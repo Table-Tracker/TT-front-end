@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./manager-profile.component.scss']
 })
 export class ManagerProfileComponent implements OnInit {
-  
+
   public restaurants!: RestaurantDTO[];
 
   user!: ManagerDTO;

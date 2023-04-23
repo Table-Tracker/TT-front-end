@@ -10,7 +10,7 @@ export class TimeFormatPipe implements PipeTransform {
         return '';
     }
 
-    let splitName = ('0'+name.toString()).slice(-2);
+    const splitName = ('0'+name.toString()).slice(-2);
     return splitName;
 }
 
